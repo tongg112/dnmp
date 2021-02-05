@@ -11,6 +11,9 @@ services:
     ports:
       - "${NGINX_HTTP_HOST_PORT}:80"
       - "${NGINX_HTTPS_HOST_PORT}:443"
+      - "8001:8001"
+      - "8002:8002"
+      - "8003:8003"
     volumes:
       - ${SOURCE_DIR}:/www/:rw
       - ${NGINX_SSL_CERTIFICATE_DIR}:/ssl:rw
@@ -124,6 +127,36 @@ services:
 #      MYSQL_ROOT_PASSWORD: "${MYSQL5_ROOT_PASSWORD}"
 #      TZ: "$TZ"
 
+  #  mysql56:
+  #    image: mysql:${MYSQL56_VERSION}
+  #    container_name: mysql56
+  #    ports:
+  #      - "${MYSQL56_HOST_PORT}:3306"
+  #    volumes:
+  #      - ${MYSQL56_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
+  #      - ${DATA_DIR}/mysql56:/var/lib/mysql/:rw
+  #    restart: always
+  #    networks:
+  #      - default
+  #    environment:
+  #      MYSQL_ROOT_PASSWORD: "${MYSQL56_ROOT_PASSWORD}"
+  #      TZ: "$TZ"
+
+  #  mysql50:
+  #    image: mysql:${MYSQL50_VERSION}
+  #    container_name: mysql50
+  #    ports:
+  #      - "${MYSQL50_HOST_PORT}:3306"
+  #    volumes:
+  #      - ${MYSQL50_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
+  #      - ${DATA_DIR}/mysql56:/var/lib/mysql/:rw
+  #    restart: always
+  #    networks:
+  #      - default
+  #    environment:
+  #      MYSQL_ROOT_PASSWORD: "${MYSQL50_ROOT_PASSWORD}"
+  #      TZ: "$TZ"
+
 #  openresty:
 #    image:  openresty/openresty:${OPENRESTY_VERSION}
 #    container_name: openresty
@@ -182,20 +215,20 @@ services:
 #    networks:
 #          - default
 
-#  phpmyadmin:
-#    image: phpmyadmin/phpmyadmin:latest
-#    container_name: phpmyadmin
-#    ports:
-#      - "${PHPMYADMIN_HOST_PORT}:80"
-#    volumes:
-#      - ${PHPMYADMIN_USER_CONF_FILE}:/etc/phpmyadmin/config.user.inc.php:ro
-#      - ${PHPMYADMIN_PHP_CONF_FILE}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini:ro
-#    networks:
-#      - default
-#    environment:
-#      - PMA_HOST=mysql
-#      - PMA_PORT=3306
-#      - TZ=$TZ
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    ports:
+      - "${PHPMYADMIN_HOST_PORT}:80"
+    volumes:
+      - ${PHPMYADMIN_USER_CONF_FILE}:/etc/phpmyadmin/config.user.inc.php:ro
+      - ${PHPMYADMIN_PHP_CONF_FILE}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini:ro
+    networks:
+      - default
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - TZ=$TZ
 
 #  phpredisadmin:
 #    image: erikdubbelboer/phpredisadmin:latest
