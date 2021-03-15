@@ -33,8 +33,3 @@ $cfg['Servers'][$i]['host']      = 'mysql5';
 $i++; // server 3 :
 $cfg['Servers'][$i]['verbose']   = '5.6';
 $cfg['Servers'][$i]['host']      = 'mysql56';
-
-
-$i++; // server 3、4 :
-$cfg['Servers'][$i]['verbose']   = '5.5';
-$cfg['Servers'][$i]['host']      = 'mysql55';
