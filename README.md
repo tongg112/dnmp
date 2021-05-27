@@ -489,4 +489,51 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 ## License
 MIT
 
+# 新增Oracle
 
+进入镜像进行配置
+docker exec -it oracle11g bash
+
+切换到 root 下
+su root
+密码：helowin
+
+编辑 profile 文件，编辑 oracle 环境变量
+```
+export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2
+export ORACLE_SID=helowin
+export PATH=$ORACLE_HOME/bin:$PATH
+```
+创建软链接
+```
+ln -s $ORACLE_HOME/bin/sqlplus /usr/bin
+```
+切换到 oracle 用户，否则会提示没有权限
+```
+su - oracle
+```
+使用 sqlplus 登录，并修改 sys system 的密码
+```
+sqlplus /nolog
+
+conn /as sysdba
+
+alter user system identified by system;
+
+alter user sys identified by sys;
+
+也可以创建用户  create user test identified by test;
+
+并给用户赋予权限  grant connect,resource,dba to test;
+
+密码永不过期
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+exit 退出
+```
+查看运行中的实例
+```
+lsnrctl status
+```
+
+可以看到有两个实例正在运行，连接的时候，连接到哪一个实例都可以
