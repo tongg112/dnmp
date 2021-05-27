@@ -97,6 +97,22 @@ services:
 #    networks:
 #      - default
 
+#  oracle11:
+#    # sid: xe
+#    # username: system
+#    # password: oracle
+#    image: registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
+#    container_name: oracle11
+#    ports:
+#      - "1521:1521"
+#    volumes:
+#      - ${DATA_DIR}/oracle11:/u01/app/oracle/:rw
+#    restart: always
+#    networks:
+#      - default
+#    environment:
+#      TZ: "$TZ"
+
   mysql:
     image: mysql:${MYSQL_VERSION}
     container_name: mysql
