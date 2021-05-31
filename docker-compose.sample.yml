@@ -98,7 +98,7 @@ services:
 #      - default
 
 #  oracle11:
-#    # sid: helowin
+#    # sid: xe
 #    # username: system
 #    # password: oracle
 #    image: registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g
@@ -106,7 +106,7 @@ services:
 #    ports:
 #      - "1521:1521"
 #    volumes:
-#      - ${DATA_DIR}/oracle11:/u01/app/oracle/:rw
+#      - ${DATA_DIR}/oracle11:/home/oracle/app/oracle/:rw
 #    restart: always
 #    networks:
 #      - default
