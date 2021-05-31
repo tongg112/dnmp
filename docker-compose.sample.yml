@@ -106,6 +106,7 @@ services:
 #    ports:
 #      - "1521:1521"
 #    volumes:
+#      - ${DATA_DIR}/oracle11:/u01/oracle/app/:rw
 #      - ${DATA_DIR}/oracle11:/home/oracle/app/oracle/:rw
 #      - ${DATA_DIR}/oracle11:/home/oracle/app/oracle/oradata/helowin:rw
 #    restart: always
